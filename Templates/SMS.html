@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+
+  <head>
+    {% include 'Header.html' %}
+  </head>
+  <!-- END: Head-->
+
+  {% comment %} SMS Sent{% endcomment %}
+  {% if smsFlag == 1 %}
+  <script>
+    alert("SMS Sent Successfully...");
+  </script>
+  {% endif %}
+
+  <!-- BEGIN: Body-->
+
+  <body
+    class="vertical-layout vertical-menu-modern dark-layout 2-columns navbar-floating footer-static"
+    data-open="click"
+    data-menu="vertical-menu-modern"
+    data-col="2-columns"
+    data-layout="dark-layout"
+  >
+    <!-- BEGIN: Header-->
+    {% include 'topNavBar.html' %}
+    <!-- END: Header-->
+    <!-- BEGIN: Main Menu-->
+    {% include 'leftMenu.html' %}
+    <!-- END: Main Menu-->
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-wrapper">
+        <div class="content-header row"></div>
+        <div class="content-body">
+          <section>
+            <div class="row match-height">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="card-body">
+                     <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                          <div class="fonticon-wraps">
+                            {% comment %} SMS {% endcomment %}
+                            <form action="SMS" method="post">
+                              {% csrf_token %}
+                              <section  id="SMS_Block">
+                                <div class="col-md-6 col-12">
+                                  <div class="form-label-group form-group">
+                                    <fieldset>Phone Number:-</fieldset>
+                                    <select class="form-control " name="SMSClass" id="SMSClass">
+                                    <option disable selected>Phone Number</option>
+                                      {% for Pn in List %}
+                                      <option>{{Pn.facultyName }}-{{Pn.mobileNo}}</option>
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+                                </div>
+                                <button
+                                  type="submit"
+                                  class="btn btn-info btn-print mb-10 mb-md-10 col-lg-2 col-md-4 col-sm-6"
+                                  style="margin-bottom: 15px; margin-left: 15px">
+                                  Send
+                                </button>
+                              </section>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                     
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- END: Content-->
+
+    <!-- BEGIN: Footer-->
+    {% include 'Footer.html' %}
+    <!-- END: Footer-->
+  </body>
+  <!-- END: Body-->
+</html>
